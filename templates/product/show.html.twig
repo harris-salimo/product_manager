@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="d-flex align-items-center justify-content-between">
+		<h2>Product:
+			{{ product.title }}</h2>
+		{% if is_granted('IS_AUTHENTICATED_FULLY') && (product.user == app.user.id) %}
+			<div>
+				<a class="btn btn-primary btn-sm" href="{{ path('edit_product', { id: product.id }) }}">Edit</a>
+				<a class="btn btn-danger btn-sm" href="{{ path('delete_product', { id: product.id }) }}">Delete</a>
+			</div>
+		{% endif %}
+	</div>
+
+	<hr class="mb-5">
+	<div class="card">
+		<div class="card-body">
+			<h4>{{ product.price }}</h4>
+			<p>{{ product.description }}</p>
+		</div>
+	</div>
+{% endblock %}

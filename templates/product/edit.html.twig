@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="d-flex align-items-center justify-content-between">
+		<h2>Edit Product</h2>
+	</div>
+
+	<hr class="mb-5">
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<input class="btn btn-primary" type="submit" value="Save"/>
+	{{ form_end(form) }}
+{% endblock %}

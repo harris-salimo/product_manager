@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="d-flex align-items-center justify-content-between">
+		<h2>Order</h2>
+	</div>
+
+	<hr class="mb-5">
+
+	{% if items %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Unit price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th></th>
+				</tr>
+				<tr></tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					<tr>
+						<td>{{ item.product.title }}</td>
+						<td>{{ item.product.price }}</td>
+						<td>{{ item.quantity }}</td>
+						<td>{{ item.product.price }}</td>
+						<td>
+							<a class="btn btn-outline-danger btn-sm" href="{{ path('delete_order', { id: item.product.id }) }}">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<div class="d-flex justify-content-center align-items-center">
+			<p>No order found.</p>
+		</div>
+	{% endif %}
+{% endblock %}
