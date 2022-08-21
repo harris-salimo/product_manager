@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}e-vidy
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		<link
+		rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container">
+			<header class="d-flex align-items-center justify-content-between pb-3 mb-5 border-bottom">
+				<a href="{{ path('app_product') }}" class="d-flex align-items-center text-dark text-decoration-none">
+					<span class="fs-4">
+						<b>
+							<i>e-vidy</i>
+						</b>
+					</span>
+				</a>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a href="{{ path('app_order') }}" class="d-flex align-items-center text-dark text-decoration-none">
+						<span class="fs-4">Order</span>
+					</a>
+				{% endif %}
+			</header>
+
+			<main>
+				{% block body %}{% endblock %}
+			</main>
+
+			<footer class="pt-5 my-5 text-muted border-top">
+				Created by HARRIS Maïla Salimo &middot; &copy; 2022
+			</footer>
+		</div>
+
+
+		<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+	</body>
 </html>
